@@ -1,18 +1,25 @@
 import urllib.request, urllib.parse, urllib.error
 import re 
+import socket
+
 url_lst = list()
-temp_url = 'https://pahe.ink/'
+# temp_url = 'https://pahe.ink/'
+temp_url = "https://www.dr-chuck.com/"
 
 while True:
     #fhand = urllib.request.urlopen(temp_url)
     #print("This is temp url",temp_url,len(url_lst))
 
     try:
-        fhand = urllib.request.urlopen(temp_url)
+        fhand = urllib.request.urlopen(temp_url, timeout=5)
     except urllib.error.HTTPError as e:
         print("HTTP error:", e.code, temp_url)
     except urllib.error.URLError as e:
         print("URL error:", e.reason, temp_url)
+    
+    except (socket.timeout, TimeoutError):
+        print("Timeout error:", temp_url)
+
     
     #print("fhand done")
 
