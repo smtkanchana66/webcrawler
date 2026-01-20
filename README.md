@@ -113,15 +113,6 @@ python3 webcrawler.py
 
 ---
 
-## Limitations
-
-* Uses regular expressions instead of a full HTML parser
-* Does not handle JavaScript-rendered links
-* Does not implement depth limits or URL deduplication by default
-* Intended for educational use only
-
----
-
 ## Learning Objectives
 
 * Understand how web crawling works at a low level
@@ -135,6 +126,6 @@ python3 webcrawler.py
 ## Disclaimer
 
 This crawler is intended for **educational purposes only**.
-Always respect website rules and terms of service when crawling public websites.
+Always respect website rules `robots.txt` and terms of service when crawling public websites.
 
 ---
