@@ -13,10 +13,16 @@ while True:
         print(url)
 
         if url:
-            if url[0] not in url_lst:            
-                url_lst.extend(url)
+            iterate = (len(url)-1) 
+            while True:
+                if url[iterate] not in url_lst:            
+                    url_lst.extend(url)
+                    iterate -= 1
+                    if iterate == -1:
+                        break
+
             print(url_lst)
-            
+
         if url_lst:
             with open("Url_list.txt", "w") as url_file:
                 url_file.write(url_lst[0])
