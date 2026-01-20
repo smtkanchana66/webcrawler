@@ -14,7 +14,7 @@ while True:
     except urllib.error.URLError as e:
         print("URL error:", e.reason, temp_url)
     
-    print("fhand done")
+    #print("fhand done")
 
     for line in fhand:
         decoded_line = line.decode('utf-8', errors='ignore').strip()
@@ -36,17 +36,18 @@ while True:
 
     print(url_lst)
     if url_lst:
-        with open("Url_list.txt", "w") as url_file:
-            url_file.write(url_lst[0])
-        print(temp_url)
-        temp_url = url_lst[0]
+        with open("Url_list.txt", "a") as url_file:
+            url_file.write(url_lst[0] + "\n")
+        #print(temp_url)
+        if "https://www.facebook" not in url_lst[0]:           
+            temp_url = url_lst[0]
         print(temp_url)
         url_lst.remove(url_lst[0])
 
-        #print("This is temp jklkkl", temp_url)
+        #print("This is temp last", temp_url)
         
     if not url_lst:
-        print("THis break worked")
+        #print("THis break worked")
         break
 
 print(len(url_lst))
