@@ -38,8 +38,7 @@ while True:
     if url_lst:
         with open("Url_list.txt", "a") as url_file:
             url_file.write(url_lst[0] + "\n")
-        #print(temp_url)
-        if "https://www.facebook" not in url_lst[0]:           
+        #print(temp_url)                  
             temp_url = url_lst[0]
         print(temp_url)
         url_lst.remove(url_lst[0])
