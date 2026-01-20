@@ -18,7 +18,7 @@ while True:
 
     for line in fhand:
         decoded_line = line.decode('utf-8', errors='ignore').strip()
-        url = re.findall('https?://\\S+"', decoded_line)
+        url = re.findall('"(http[s]?://\\S+)"', decoded_line)
         #print("URL FINDED", url)
 
         if url:
