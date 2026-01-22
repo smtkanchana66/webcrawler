@@ -3,8 +3,9 @@ import re
 import socket
 
 url_lst = list()
+
+temp_url = input("Enter Valid URL :")
 # temp_url = 'https://pahe.ink/'
-temp_url = "https://www.dr-chuck.com/"
 
 while True:
     #fhand = urllib.request.urlopen(temp_url)
