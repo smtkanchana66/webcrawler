@@ -1,18 +1,19 @@
 import urllib.request, urllib.parse, urllib.error
 import re 
 import socket
+from bs4 import BeautifulSoup
 
 url_lst = list()
 
-temp_url = input("Enter Valid URL :")
-# temp_url = 'https://pahe.ink/'
+#temp_url = input("Enter Valid URL :")
+temp_url = 'https://pahe.ink/'
 
 while True:
     #fhand = urllib.request.urlopen(temp_url)
     #print("This is temp url",temp_url,len(url_lst))
 
     try:
-        fhand = urllib.request.urlopen(temp_url, timeout=5)
+        fhand = urllib.request.urlopen(temp_url, timeout=5).read()
     except urllib.error.HTTPError as e:
         print("HTTP error:", e.code, temp_url)
     except urllib.error.URLError as e:
@@ -24,18 +25,30 @@ while True:
     
     #print("fhand done")
 
-    for line in fhand:
-        decoded_line = line.decode('utf-8', errors='ignore').strip()
-        url = re.findall('"(http[s]?://\\S+)"', decoded_line)
-        #print("URL FINDED", url)
+#######This is modified part using beautifulsoup######### 
 
+    soup = BeautifulSoup(fhand, 'html.parser')
+    tags = soup('a')
+
+    for tag in tags:        
+        url = tag.get('href', None)
+
+#########################################################
+
+    # for line in fhand:
+    #     decoded_line = line.decode('utf-8', errors='ignore').strip()
+    #     url = re.findall('"(http[s]?://\\S+)"', decoded_line)
+    #     print("URL FINDED", url)
+
+#########################################################
         if url:
             iterate = (len(url)-1)
             # print(iterate) 
             a = True
             while a:
-                if url[iterate] not in url_lst:            
-                    url_lst.extend(url)
+                if url[iterate] not in url_lst:
+###### We need to append cuz soup gives us string not list, IF YOU USE REGREX ADD EXTEND INSTED APPEND                              
+                    url_lst.append(url)
                 iterate -= 1
                 if url:
                     a = False
